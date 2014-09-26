@@ -8,6 +8,7 @@ gem "data_mapper"
 gem "dm-postgres-adapter"
 gem "do_postgres"
 gem "mysql2"
+gem "daemons"
 
 group :test do
   gem "rspec"
