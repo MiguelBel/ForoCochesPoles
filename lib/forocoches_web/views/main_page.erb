@@ -1,0 +1,9 @@
+<p>Hemos trackeado <%= thousandSeparator(number_of_tracked_threads) %> hilos hasta ahora.</p>
+<p>De los cuales:</p>
+  <ul>
+    <li><%= thousandSeparator(number_of_censored_threads) %> son hilos "censurados" o borrados (+18, +hd, +prv...).</li>
+    <li><%= thousandSeparator(number_of_no_poleman_threads) %> no tienen pole aún.</li>
+    <li><%= thousandSeparator(number_of_general_threads) %> son hilos del general (no censurados).</li>
+    <li><%= thousandSeparator(number_of_tracked_threads - number_of_general_threads) %> son hilos de otras categorías (no censurados).</li>
+  </ul>
+<p>Nuestra última Pole es con fecha: <%= last_thread_date %></p>

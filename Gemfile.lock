@@ -127,4 +127,5 @@ DEPENDENCIES
   nokogiri
   pg
   rspec
+  sinatra
   tux

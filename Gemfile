@@ -9,6 +9,7 @@ gem "dm-postgres-adapter"
 gem "do_postgres"
 gem "mysql2"
 gem "daemons"
+gem "sinatra"
 
 group :test do
   gem "rspec"
