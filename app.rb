@@ -16,7 +16,7 @@ set :public_dir, File.join(File.dirname(__FILE__), '/lib/forocoches_web/public')
 # Cronjobs
 scheduler = Rufus::Scheduler.new
 
-scheduler.in '10m' do
+scheduler.every '10m' do
   globalRankingGenerator
 end
 
