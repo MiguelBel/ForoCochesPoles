@@ -10,15 +10,15 @@ require_relative 'lib/forocoches_tracker/tracker'
 
 Process.daemon(true)
 
-loop do
-  pid = Process.fork do
-    last_id = Poles.last.id_thread
-    ((last_id + 1)..(last_id + 11)).each_with_index do |thread_id, index|
-      thread = FCThread.new(thread_id)
-      tracker = Tracker.new
-      break if thread.getStatusOfThread == 2
-      tracker.insertInDatabase(thread) 
-    end
+# loop do
+#   pid = Process.fork do
+#     # last_id = Poles.last.id_thread
+#     # ((last_id + 1)..(last_id + 11)).each_with_index do |thread_id, index|
+#     #   thread = FCThread.new(thread_id)
+#     #   tracker = Tracker.new
+#     #   break if thread.getStatusOfThread == 2
+#     #   tracker.insertInDatabase(thread) 
+#     # end
 
     adapter = DataMapper.repository(:default).adapter
     select = adapter.select("SELECT * FROM poles WHERE category = 'General' AND status = 'no_pole_yet' AND poleman IS NULL AND time > (#{Time.now.to_i - 30 * 60}) ORDER BY time ASC LIMIT 20;")
@@ -30,8 +30,8 @@ loop do
     end
   end
 
-  Process.waitpid(pid)
+#   Process.waitpid(pid)
 
-  # Reduce CPU usage
-  sleep(5)
-end
+#   # Reduce CPU usage
+#   sleep(5)
+# end
