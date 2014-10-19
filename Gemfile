@@ -11,6 +11,7 @@ gem "mysql2"
 gem "daemons"
 gem "sinatra"
 gem "typhoeus"
+gem "rufus-scheduler"
 
 group :test do
   gem "rspec"
