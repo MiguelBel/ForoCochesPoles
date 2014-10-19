@@ -16,7 +16,7 @@ loop do
     ((last_id + 1)..(last_id + 11)).each_with_index do |thread_id, index|
       thread = FCThread.new(thread_id)
       tracker = Tracker.new
-      break if thread.getStatusOfThread != 2
+      break if thread.getStatusOfThread == 2
       tracker.insertInDatabase(thread) 
     end
   end
@@ -24,5 +24,5 @@ loop do
   Process.waitpid(pid)
 
   # Reduce CPU usage
-  sleep(20)
+  sleep(5)
 end
