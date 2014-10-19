@@ -18,6 +18,7 @@ scheduler = Rufus::Scheduler.new
 
 scheduler.every '10m' do
   globalRankingGenerator
+  pp "doned"
 end
 
 # Routes
