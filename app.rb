@@ -33,6 +33,11 @@ get '/faq' do
   erb :faq, :layout => :template
 end
 
+get '/force_global_ranking' do
+  globalRankingGenerator
+  "Forcing completed"
+end
+
 ## Not alone
 get '/finder' do
   erb :custom_error, :layout => :template, :locals => {:error => "Usa el campo de búsqueda, estamos \"trabajando\" en una API"}
