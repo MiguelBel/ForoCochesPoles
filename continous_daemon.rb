@@ -16,8 +16,11 @@ loop do
     ((last_id + 1)..(last_id + 11)).each_with_index do |thread_id, index|
       thread = FCThread.new(thread_id)
       tracker = Tracker.new
-      break if thread.getStatusOfThread == 2
-      tracker.insertInDatabase(thread) if thread.getStatusOfThread != 2
+      if thread.status == 2
+        break
+      else
+        tracker.insertInDatabase(thread)
+      end
     end
 
     adapter = DataMapper.repository(:default).adapter
