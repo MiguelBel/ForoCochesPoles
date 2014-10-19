@@ -37,5 +37,5 @@ loop do
   Process.waitpid(pid)
 
   # Reduce CPU usage
-  sleep(5)
+  sleep(20)
 end
