@@ -29,7 +29,7 @@ loop do
     select.each do |previous_thread|
       thread = FCThread.new(previous_thread.id_thread)
       if !thread.poleman.nil?
-        adapter.execute("UPDATE poles SET status='', poleman='#{thread.poleman}', pole_time='#{thread.pole_time}' WHERE id_thread = #{previous_thread.id_thread}")
+        adapter.execute("UPDATE poles SET status='', poleman='#{thread.poleman}', pole_time='#{thread.pole_time}', op_time='#{thread.op_time}' WHERE id_thread = #{previous_thread.id_thread}")
       end
     end
   end
