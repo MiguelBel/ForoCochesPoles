@@ -19,7 +19,7 @@ helpers do
     out_file = File.new("lib/forocoches_web/public/global_ranking.txt", "w")
     select = adapter.select("SELECT poleman, count(*) FROM poles WHERE category='General' AND trim(poleman) IS NOT NULL and trim(poleman) != '' GROUP BY poleman ORDER BY count(*) DESC")
     select.each_with_index do |individual, index|
-      out_file.puts("#{index + 1} | some #{individual.poleman} | #{individual.count} poles")
+      out_file.puts("#{index + 1} | #{individual.poleman} | #{individual.count} poles")
     end
     out_file.close
   end
