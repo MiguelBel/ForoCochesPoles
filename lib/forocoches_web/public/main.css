@@ -1,0 +1,56 @@
+body{
+  font-family: monospace;
+}
+
+header{
+  text-align: center;
+}
+
+#finder{
+  text-align: center;
+}
+
+footer .content-footer p{
+  font-size:9;
+  float:right;
+  margin-right: 75px;
+}
+
+footer{
+  margin-top:50px;
+  float:right;
+  width:100%;
+}
+
+.ranking{
+  float:right;
+}
+
+#rankings{
+    width: 660px;
+    margin: 0 auto;
+    min-height:1px;
+}
+
+#daily-ranking {
+    float: left;
+    width: 220px;
+}
+
+#weekly-ranking {
+    float: left;
+    width: 220px;
+}
+
+#monthly-ranking {
+    float: left;
+    width: 220px;
+}
+
+ol{
+  padding-left:25px;
+}
+
+.ranking strong{
+  font-size:12px;
+}

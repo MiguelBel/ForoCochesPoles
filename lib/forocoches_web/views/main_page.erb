@@ -1,9 +1,81 @@
-<p>Hemos trackeado <%= thousandSeparator(number_of_tracked_threads) %> hilos hasta ahora.</p>
-<p>De los cuales:</p>
-  <ul>
-    <li><%= thousandSeparator(number_of_censored_threads) %> son hilos "censurados" o borrados (+18, +hd, +prv...).</li>
-    <li><%= thousandSeparator(number_of_no_poleman_threads) %> no tienen pole aún.</li>
-    <li><%= thousandSeparator(number_of_general_threads) %> son hilos del general (no censurados).</li>
-    <li><%= thousandSeparator(number_of_tracked_threads - number_of_general_threads) %> son hilos de otras categorías (no censurados).</li>
-  </ul>
-<p>Nuestra última Pole es con fecha: <%= last_thread_date %></p>
+
+  <header>
+    <div class="video">
+      <iframe width="560" height="315" src="//www.youtube.com/embed/xkK8brd5_2M" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="title">
+      <h3>Poleador.es</h3>
+    </div>
+
+    <div>
+      <p>No te olvides de mirar: <a href="/ranking">Ranking Global</a> | <a href="/faq">FAQ</a> | <a href="http://shurscript.org/">Shurscript</a></p>
+    </div>
+  </header>
+  
+  <article id="container">
+    <div id="finder">
+      <form method="post" action="/finder">
+        <p>
+          Búscate: 
+          <input type="text" size="15" name="nick">
+          <input type="submit" value="Ya">
+        </p>
+      </form>
+    </div>
+
+    <div id="rankings">
+      <div class="ranking" id="daily-ranking">
+        <strong>Diario (<%= Time.now.day %>-<%= Time.now.month %>-<%= Time.now.year %>)</strong>
+        <ol>
+          <li>Es</li>
+          <li>Por</li>
+          <li>Eso</li>
+          <li>Que</li>
+          <li>Estoy</li>
+          <li>Haciendo</li>
+          <li>Trap</li>
+          <li>Pxxrin</li>
+          <li>Gang</li>
+          <li>Ola</li>
+        </ol>
+      </div>
+      <div class="ranking" id="weekly-ranking">
+        <strong>Semanal (De lunes a domingo)</strong>
+        <ol>
+          <li>Es</li>
+          <li>Por</li>
+          <li>Eso</li>
+          <li>Que</li>
+          <li>Estoy</li>
+          <li>Haciendo</li>
+          <li>Trap</li>
+          <li>Pxxrin</li>
+          <li>Gang</li>
+          <li>Ola</li>
+        </ol>
+      </div>
+      <div class="ranking" id="monthly-ranking">
+        <strong>Mensual (Mes <%= Time.now.month %>)</strong>
+        <ol>
+          <li>Es</li>
+          <li>Por</li>
+          <li>Eso</li>
+          <li>Que</li>
+          <li>Estoy</li>
+          <li>Haciendo</li>
+          <li>Trap</li>
+          <li>Pxxrin</li>
+          <li>Gang</li>
+          <li>Ola</li>
+        </ol>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <hr/>
+    <div class="content-footer">
+      <p>"Zé Pequeño había cometido un error. Debería haber sabido que detrás de cada vendedor hay siempre un proveedor y ellos no juegan...”</p>
+    </div>
+  </footer>

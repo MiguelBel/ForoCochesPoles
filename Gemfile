@@ -10,6 +10,7 @@ gem "do_postgres"
 gem "mysql2"
 gem "daemons"
 gem "sinatra"
+gem "typhoeus"
 
 group :test do
   gem "rspec"

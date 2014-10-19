@@ -1,12 +1,19 @@
 helpers do
 
   def mainPageController
-    number_of_tracked_threads = Poles.all(:fields => [:id, :category, :poleman]).count
-    number_of_censored_threads = Poles.all(:poleman => "", :category => "",:fields => [:id]).count
-    number_of_no_poleman_threads = Poles.all(:poleman => "", :category.not => "",:fields => [:id]).count
-    number_of_general_threads = Poles.all(:category => "General", :fields => [:id]).count
-    last_thread_date = Poles.last(:category.not => "", :poleman.not => "", :fields => [:pole_time]).pole_time
-    erb :main_page, :layout => nil, :locals => {:number_of_tracked_threads => number_of_tracked_threads, :number_of_censored_threads => number_of_censored_threads, :number_of_no_poleman_threads => number_of_no_poleman_threads, :number_of_general_threads => number_of_general_threads, :last_thread_date => last_thread_date}
+    erb :main_page, :layout => :template
+  end
+
+  def finderController
+    required_params_checking = (params[:nick].nil? || params[:nick].strip.empty?)
+
+    if required_params_checking
+      erb :no_nick_error, :layout => :template
+    else
+      number_of_poles = getPolesFrom(params[:nick])
+      erb :finder_success, :layout => :template, :locals => {:nick => params[:nick], :number_of_poles => number_of_poles}
+    end
+  
   end
 
 end
