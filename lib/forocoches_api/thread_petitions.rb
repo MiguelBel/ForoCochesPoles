@@ -117,7 +117,6 @@ class FCThread
   def created_time
     time_of_posters = listOfTimeOfPosters
     return false if getStatusOfThread != 1 || time_of_posters.count == 0
-    return nil if listOfPosters.count < 2
 
     return time_of_posters[0].strip    
   end

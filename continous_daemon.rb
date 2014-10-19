@@ -8,11 +8,11 @@ require_relative 'lib/forocoches_api/thread_petitions'
 require_relative 'lib/forocoches_tracker/database'
 require_relative 'lib/forocoches_tracker/tracker'
 
-Process.daemon(true)
+# Process.daemon(true)
 
-loop do
-  pid = Process.fork do
-    last_id = Poles.last.id_thread
+# loop do
+#   pid = Process.fork do
+#     last_id = Poles.last.id_thread
 
     # ((last_id + 1)..(last_id + 11)).each_with_index do |thread_id, index|
     #   thread = FCThread.new(thread_id)
@@ -32,10 +32,10 @@ loop do
         adapter.execute("UPDATE poles SET status='', poleman='#{thread.poleman}', pole_time='#{thread.pole_time}', op_time='#{thread.op_time}' WHERE id_thread = #{previous_thread.id_thread}")
       end
     end
-  end
+#   end
 
-  Process.waitpid(pid)
+#   Process.waitpid(pid)
 
-  # Reduce CPU usage
-  sleep(5)
-end
+#   # Reduce CPU usage
+#   sleep(5)
+# end
