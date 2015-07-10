@@ -1,17 +1,21 @@
-class FCURL
-  class << self; attr_accessor :thread_url end
+module ForoCochesAPI
+  class UrlConstructor 
+    class << self
+      def buildThreadURL(id)
+        "#{thread_url}#{id}"
+      end
 
-  @thread_url = "http://www.forocoches.com/foro/showthread.php?t="
+      def buildThreadURLWithPage(id, page)
+        "#{buildThreadURL(id)}&page=#{page}"
+      end
 
-  def self.buildThreadURL(id)
-    return "#{@thread_url}#{id}"
-  end
+      def retrieveIDFromURL(url)
+        url.gsub(thread_url, "").to_i
+      end
 
-  def self.buildThreadURLWithPage(id, page)
-    return "#{self.buildThreadURL(id)}&page=#{page}"
-  end
-
-  def self.retrieveIDFromURL(url)
-    return url.gsub(@thread_url, "").to_i
+      def thread_url
+        "http://www.forocoches.com/foro/showthread.php?t="
+      end
+    end
   end
 end

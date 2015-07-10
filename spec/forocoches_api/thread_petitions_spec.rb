@@ -7,7 +7,7 @@ describe "Thread Petitions" do
 
     it "Get the default url on initialize" do
       id = 11
-      default_url = FCURL.buildThreadURL(id)
+      default_url = ForoCochesAPI::UrlConstructor.buildThreadURL(id)
       thread = FCThread.new(id)
       expect(default_url).to eq(thread.default_url)
     end

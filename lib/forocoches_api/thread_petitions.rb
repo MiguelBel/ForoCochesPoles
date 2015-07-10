@@ -3,7 +3,7 @@ class FCThread
 
   def initialize(id, petition_response = false)
     @id_thread = id
-    @thread_url = FCURL.buildThreadURL(id)
+    @thread_url = ForoCochesAPI::UrlConstructor.buildThreadURL(id)
     
     if petition_response == false
       @petition = Curl::Easy.new
