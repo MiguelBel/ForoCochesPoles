@@ -110,7 +110,7 @@ describe "Thread Petitions" do
       id = 3875766
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.poleman).to be false
+        expect(thread.poleman).to be nil
       end
     end    
 
@@ -118,7 +118,7 @@ describe "Thread Petitions" do
       id = 3902693
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.poleman).to be false 
+        expect(thread.poleman).to be nil 
       end
     end
 
@@ -126,7 +126,7 @@ describe "Thread Petitions" do
       id = 10000000000000000
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.poleman).to be false  
+        expect(thread.poleman).to be nil  
       end
     end
     
@@ -168,7 +168,7 @@ describe "Thread Petitions" do
       id = 3875766
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.category).to be false
+        expect(thread.category).to be nil
       end
     end    
 
@@ -176,7 +176,7 @@ describe "Thread Petitions" do
       id = 3902693
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.category).to be false 
+        expect(thread.category).to be nil 
       end
     end
 
@@ -184,7 +184,7 @@ describe "Thread Petitions" do
       id = 10000000000000000
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.category).to be false  
+        expect(thread.category).to be nil  
       end
     end
 
@@ -236,7 +236,7 @@ describe "Thread Petitions" do
       id = 3875766
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.pole_time).to be false
+        expect(thread.pole_time).to be nil
       end
     end    
 
@@ -244,7 +244,7 @@ describe "Thread Petitions" do
       id = 3902693
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.pole_time).to be false 
+        expect(thread.pole_time).to be nil 
       end
     end
 
@@ -252,7 +252,7 @@ describe "Thread Petitions" do
       id = 10000000000000000
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.pole_time).to be false  
+        expect(thread.pole_time).to be nil  
       end
     end
 

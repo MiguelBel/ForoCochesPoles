@@ -1,6 +1,5 @@
 require "pg"
 require "data_mapper"
-require "pp"
 
 DataMapper.setup(:default, 'postgres://alice:password@localhost/forocoches_poles')
 

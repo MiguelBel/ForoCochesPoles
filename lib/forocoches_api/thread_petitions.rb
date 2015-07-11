@@ -44,21 +44,21 @@ module ForoCochesAPI
 
     def poleman
       list_of_posters = listOfPosters
-      return false if getStatusOfThread != 1 || list_of_posters.count == 0
+      return nil if getStatusOfThread != 1 || list_of_posters.count == 0
       return nil if list_of_posters.count < 2
       return list_of_posters[1]
     end
 
     def pole_time
       time_of_posters = listOfTimeOfPosters
-      return false if getStatusOfThread != 1 || time_of_posters.count == 0
+      return nil if getStatusOfThread != 1 || time_of_posters.count == 0
       return nil if listOfPosters.count < 2
 
       return time_of_posters[0].strip
     end
 
     def created_time
-      return false if getStatusOfThread != 1
+      return nil if getStatusOfThread != 1
 
       @thread_parsed.search('table.tborder-author td.thead').each do |author_time_information|
         return author_time_information.text.strip
@@ -66,7 +66,7 @@ module ForoCochesAPI
     end
 
     def category
-      return false if getStatusOfThread != 1
+      return nil if getStatusOfThread != 1
 
       @thread_parsed.search("span.navbar a").each_with_index do |navbar_category_container, index|
         return navbar_category_container.text if index == 2
