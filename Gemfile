@@ -17,4 +17,6 @@ group :test do
   gem "rspec"
   gem "capybara"
   gem "tux"
+  gem "vcr"
+  gem "webmock"
 end
