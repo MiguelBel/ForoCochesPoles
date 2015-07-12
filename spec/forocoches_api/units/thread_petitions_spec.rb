@@ -1,7 +1,7 @@
 require 'rspec'
 require 'spec_helper'
 
-describe "Thread Petitions" do
+describe ForoCochesAPI::PetitionManager do
 
   context "Getting the main aspects of the petitions" do
 

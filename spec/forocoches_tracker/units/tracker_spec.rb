@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Tracker" do
+describe ForoCochesTracker::Database do
 
   context "Initialize the tracker" do
     it "Check the default quantity of tracking" do
@@ -22,15 +22,51 @@ describe "Tracker" do
     end
   end
 
-  context "Start the tracker" do
-    it "Track and check the inserts in the database" do
-      disableVCRandWebMock
-      initial_poles_count = Poles.count
+  context "Individual tracker" do
+    it "When called the individualTrack it calls to the individualPetitions" do
       custom = 10
       tracker = ForoCochesTracker::Database.new(custom)
-      tracker.track
-      final_poles_count = Poles.count
-      expect(final_poles_count).to eq(initial_poles_count + custom)
+      expect(tracker).to receive(:doTheIndividualPetitions)
+      tracker.individualTrack
+    end
+
+    it "When called the doTheIndividualPetitions it calls the petition manager" do
+      disableVCRandWebMock
+      custom = 10
+      tracker = ForoCochesTracker::Database.new(custom)
+      custom.times do |time|
+        expect(ForoCochesAPI::PetitionManager).to receive(:new)
+        expect(tracker).to receive(:insertInDatabase)
+      end
+      tracker.individualTrack
+    end
+  end
+
+  context "Bulk tracker" do
+    it "When the bulk track is called it calls the function which create empty records and the one which fill those empty records" do
+      custom = 10
+      tracker = ForoCochesTracker::Database.new(custom)
+      expect(tracker).to receive(:createEmptyRecords)
+      expect(tracker).to receive(:fillEmptyRecords)
+      tracker.bulkTrack
+    end
+
+    it "When the createEmptyRecords function is called it calls the custom number of single empty record create" do
+      custom = 10
+      tracker = ForoCochesTracker::Database.new(custom)
+      custom.times do |time|
+        expect(tracker).to receive(:createEmptyRecord)
+      end
+      tracker.createEmptyRecords
+    end
+
+    it "When the fillEmptyRecords function is called it calls the custom number of single empty record create" do
+      custom = 10
+      tracker = ForoCochesTracker::Database.new(custom)
+      custom.times do |time|
+        expect(tracker).to receive(:fillEmptyRecord)
+      end
+      tracker.fillEmptyRecords
     end
   end
 end

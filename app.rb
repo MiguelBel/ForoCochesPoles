@@ -2,12 +2,17 @@
 require "sinatra"
 require "erb"
 require "rufus-scheduler"
+require "active_record"
 
 
 # Files required
 require_relative "lib/forocoches_web/controllers/user_interface_controllers"
 require_relative "lib/forocoches_web/helpers/user_interface_helpers"
-require_relative "lib/forocoches_tracker/database"
+
+require_relative 'db/poles'
+
+connection_info = YAML.load_file("db/config.yml")["test"]
+ActiveRecord::Base.establish_connection(connection_info)
 
 # Dir config
 set :views, File.join(File.dirname(__FILE__), '/lib/forocoches_web/views')

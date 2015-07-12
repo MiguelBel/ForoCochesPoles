@@ -18,11 +18,16 @@ module ForoCochesTracker
       Poles.last
     end
 
-    def track
-      doThePetitions
+    def individualTrack
+      doTheIndividualPetitions
     end
 
-    def doThePetitions
+    def bulkTrack
+      createEmptyRecords
+      fillEmptyRecords
+    end
+
+    def doTheIndividualPetitions
       polemans = []
       (@initial_thread..@last_thread).each do |thread_number|
         thread = ForoCochesAPI::PetitionManager.new(thread_number)
@@ -30,11 +35,34 @@ module ForoCochesTracker
       end
     end
 
+    def createEmptyRecords
+      (@initial_thread..@last_thread).each do |thread_number|
+        createEmptyRecord(thread_number)
+      end
+    end
+
+    def createEmptyRecord(thread_number)
+      Poles.create(:id_thread => thread_number, :status => "pending")
+    end
+
+    def fillEmptyRecords
+      (@initial_thread..@last_thread).each do |thread_number|
+        thread = ForoCochesAPI::PetitionManager.new(thread_number)
+        fillEmptyRecord(thread_number, thread)
+      end
+    end
+
+    def fillEmptyRecord(thread_number, thread)
+      record = Poles.where("id_thread = ?", thread_number).first
+      data = prepareData(thread)
+      record.update(:poleman => data[:poleman], :category => data[:category], :op_time => data[:op_time], :pole_time => data[:pole_time], :status => data[:status])
+    end
+
     def insertInDatabase(thread)
       data = prepareData(thread)
       Poles.create(:id_thread => data[:thread_id], :poleman => data[:poleman], :category => data[:category], :op_time => data[:op_time], :pole_time => data[:pole_time], :status => data[:status])
     end
-   
+
     def getDatabaseStatus(thread)
       return "deleted" if thread.status == 4
       return "censored" if thread.status == 3
