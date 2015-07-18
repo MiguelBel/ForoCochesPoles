@@ -10,6 +10,7 @@ gem "sinatra"
 gem "typhoeus"
 gem "rufus-scheduler"
 gem "activerecord"
+gem "sidekiq"
 
 group :test do
   gem "rspec"
@@ -17,4 +18,5 @@ group :test do
   gem "tux"
   gem "vcr"
   gem "webmock"
+  gem 'rspec-sidekiq'
 end
