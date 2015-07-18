@@ -11,7 +11,7 @@ require_relative "lib/forocoches_web/helpers/user_interface_helpers"
 
 require_relative 'db/poles'
 
-connection_info = YAML.load_file("db/config.yml")["test"]
+connection_info = YAML.load_file("db/config.yml")[ENV["RACK_ENV"]]
 ActiveRecord::Base.establish_connection(connection_info)
 
 # Dir config

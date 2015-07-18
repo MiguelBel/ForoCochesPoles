@@ -22,6 +22,7 @@ task :environment => ["db:load_config"] do
   ActiveRecord::Base.establish_connection ActiveRecord::Tasks::DatabaseTasks.database_configuration[ActiveRecord::Tasks::DatabaseTasks.env]
 end
 
+# RSpec
 begin
 	require 'rspec/core/rake_task'
 
@@ -30,4 +31,17 @@ begin
 	task :default => :spec
 
 rescue LoadError
+end
+
+# Sidekiq
+namespace :sidekiq do 
+  desc "Track the next poles starting from the last one"
+  task :track_poles, [:poles_to_track, :jobs_size, :delay]  do |t, args|
+    sh "ruby lib/forocoches_jobs/poles.rb #{args[:poles_to_track]} #{args[:jobs_size]} #{args[:delay]}"
+  end
+
+  desc "Start the sidekiq worker"
+  task :start_sidekiq do
+    sh "bundle exec sidekiq -r ./lib/forocoches_jobs/pole_job.rb"
+  end
 end
