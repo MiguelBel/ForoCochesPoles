@@ -2,4 +2,7 @@
 .ruby-version
 .ruby-gemset
 db/config.yml
+<<<<<<< HEAD
 var/*
+=======
+>>>>>>> f2850fe9e6cd55b9e947e180fe44ca70799f199a
