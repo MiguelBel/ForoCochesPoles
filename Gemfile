@@ -3,7 +3,7 @@ ruby  "2.1.2"
 
 gem "curb"
 gem "nokogiri"
-gem "pg"
+gem "mysql"
 gem "daemons"
 gem "sinatra"
 gem "typhoeus"

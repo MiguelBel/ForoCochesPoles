@@ -17,14 +17,6 @@ connection_info = YAML.load_file("db/config.yml")["test"]
 ActiveRecord::Base.establish_connection(connection_info)
 
 RSpec.configure do |config|
-  # Use color in STDOUT
-  config.color = true
-
-  # Use color not only in STDOUT but also in pagers and files
-  config.tty = true
-
-  # Use the specified formatter
-  config.formatter = :documentation # :progress, :html, :textmate
 
   ActiveRecord::Base.transaction do
     raise ActiveRecord::Rollback

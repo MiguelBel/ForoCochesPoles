@@ -14,7 +14,7 @@ describe ForoCochesAPI::PetitionManager do
         expect(default_url).to eq(thread.thread_url)
       end
     end
-    
+
     it "Get the body content of first page (default_page)" do
       id = 11
 
@@ -22,7 +22,7 @@ describe ForoCochesAPI::PetitionManager do
         thread = ForoCochesAPI::PetitionManager.new(id)
         expect(thread.content.class).to be String
       end
-    end 
+    end
 
   end
 
@@ -30,16 +30,16 @@ describe ForoCochesAPI::PetitionManager do
 
     it "Is a never created thread" do
       id = 10000000000000000
-      
+
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.hasNeverBeenCreated?).to be true  
+        expect(thread.hasNeverBeenCreated?).to be true
       end
     end
 
     it "Is not a never created thread" do
       id = 11
-      
+
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
         expect(thread.hasNeverBeenCreated?).to be false
@@ -51,7 +51,7 @@ describe ForoCochesAPI::PetitionManager do
       id = 3902693
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.isCensoredThread?).to be true 
+        expect(thread.isCensoredThread?).to be true
       end
     end
 
@@ -112,13 +112,13 @@ describe ForoCochesAPI::PetitionManager do
         thread = ForoCochesAPI::PetitionManager.new(id)
         expect(thread.poleman).to be nil
       end
-    end    
+    end
 
     it "Cannot because is a censored thread" do
       id = 3902693
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.poleman).to be nil 
+        expect(thread.poleman).to be nil
       end
     end
 
@@ -126,10 +126,10 @@ describe ForoCochesAPI::PetitionManager do
       id = 10000000000000000
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.poleman).to be nil  
+        expect(thread.poleman).to be nil
       end
     end
-    
+
   end
 
   context "With having the outside content" do
@@ -140,7 +140,7 @@ describe ForoCochesAPI::PetitionManager do
       VCR.use_cassette("thread_#{id}") do
         thread_previous = ForoCochesAPI::PetitionManager.new(id)
         thread = ForoCochesAPI::PetitionManager.new(id, thread_previous.content)
-        expect(thread.poleman).to eq(poleman)      
+        expect(thread.poleman).to eq(poleman)
       end
     end
 
@@ -170,13 +170,13 @@ describe ForoCochesAPI::PetitionManager do
         thread = ForoCochesAPI::PetitionManager.new(id)
         expect(thread.category).to be nil
       end
-    end    
+    end
 
     it "Cannot because is a censored thread" do
       id = 3902693
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.category).to be nil 
+        expect(thread.category).to be nil
       end
     end
 
@@ -184,7 +184,7 @@ describe ForoCochesAPI::PetitionManager do
       id = 10000000000000000
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.category).to be nil  
+        expect(thread.category).to be nil
       end
     end
 
@@ -238,13 +238,13 @@ describe ForoCochesAPI::PetitionManager do
         thread = ForoCochesAPI::PetitionManager.new(id)
         expect(thread.pole_time).to be nil
       end
-    end    
+    end
 
     it "Cannot because is a censored thread" do
       id = 3902693
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.pole_time).to be nil 
+        expect(thread.pole_time).to be nil
       end
     end
 
@@ -252,7 +252,7 @@ describe ForoCochesAPI::PetitionManager do
       id = 10000000000000000
       VCR.use_cassette("thread_#{id}") do
         thread = ForoCochesAPI::PetitionManager.new(id)
-        expect(thread.pole_time).to be nil  
+        expect(thread.pole_time).to be nil
       end
     end
 

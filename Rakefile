@@ -12,9 +12,9 @@ load File.join(spec.gem_dir, "lib", "active_record", "railties", "databases.rake
 
 # Overwrite the load config to your needs
 Rake::Task["db:load_config"].overwrite do
-  ActiveRecord::Base.configurations = ActiveRecord::Tasks::DatabaseTasks.database_configuration = YAML.load_file('db/config.yml') 
+  ActiveRecord::Base.configurations = ActiveRecord::Tasks::DatabaseTasks.database_configuration = YAML.load_file('db/config.yml')
   ActiveRecord::Tasks::DatabaseTasks.db_dir = 'db'
-  ActiveRecord::Tasks::DatabaseTasks.env    = 'development' 
+  ActiveRecord::Tasks::DatabaseTasks.env    = 'development'
 end
 
 # Migrations need an environment with an already established database connection
@@ -22,24 +22,9 @@ task :environment => ["db:load_config"] do
   ActiveRecord::Base.establish_connection ActiveRecord::Tasks::DatabaseTasks.database_configuration[ActiveRecord::Tasks::DatabaseTasks.env]
 end
 
-# RSpec
-begin
-	require 'rspec/core/rake_task'
-
-	RSpec::Core::RakeTask.new(:spec)
-
-	task :default => :spec
-
-rescue LoadError
-end
 
 # Sidekiq
-namespace :sidekiq do 
-  desc "Track the next poles starting from the last one"
-  task :track_poles, [:poles_to_track, :jobs_size, :top_limit, :delay]  do |t, args|
-    sh "ruby lib/forocoches_jobs/poles.rb #{args[:poles_to_track]} #{args[:jobs_size]} #{args[:top_limit]} #{args[:delay]}"
-  end
-
+namespace :sidekiq do
   desc "Start the sidekiq worker without daemon"
   task :start do
     sh "bundle exec sidekiq -r ./lib/forocoches_jobs/pole_job.rb -C config/sidekiq.yml"
@@ -66,5 +51,12 @@ namespace :sidekiq do
     rescue
       p "error"
     end
+  end
+end
+
+namespace :app do
+  desc "Track the next poles starting from the last one"
+  task :track_poles, [:poles_to_track, :jobs_size, :top_limit, :delay]  do |t, args|
+    sh "ruby lib/forocoches_jobs/poles.rb #{args[:poles_to_track]} #{args[:jobs_size]} #{args[:top_limit]} #{args[:delay]}"
   end
 end

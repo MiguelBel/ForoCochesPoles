@@ -41,9 +41,9 @@ GEM
     mime-types (2.3)
     mini_portile (0.6.0)
     minitest (5.7.0)
+    mysql (2.9.1)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
-    pg (0.17.1)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -116,8 +116,8 @@ DEPENDENCIES
   capybara
   curb
   daemons
+  mysql
   nokogiri
-  pg
   rspec
   rspec-sidekiq
   rufus-scheduler

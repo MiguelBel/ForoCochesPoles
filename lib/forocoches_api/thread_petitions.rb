@@ -1,13 +1,13 @@
 require 'net/http'
 
 module ForoCochesAPI
-  class PetitionManager 
+  class PetitionManager
     attr_reader :id_thread, :thread_url, :content, :status
 
     def initialize(id, petition_response = false)
       @id_thread = id
       @thread_url = ForoCochesAPI::UrlConstructor.buildThreadURL(id)
-      loadContent(@thread_url, petition_response) 
+      loadContent(@thread_url, petition_response)
       @thread_parsed = Nokogiri::HTML(self.content)
       @status = getStatusOfThread
     end
@@ -23,13 +23,9 @@ module ForoCochesAPI
     end
 
     def isCensoredThread?
-      panel_content = ""
+      result = @thread_parsed.xpath('//a[@href="/invitacion/"]')
 
-      @thread_parsed.search("div.panel div div strong").each do |panel_information|
-        return true if panel_information.text == "EL TEMA QUE NECESITAS VER ESTÁ DISPONIBLE PARA USUARIOS REGISTRADOS CON INVITACIÓN" 
-      end
-
-      false
+      result.empty?
     end
 
     def isDeletedThread?
@@ -103,7 +99,7 @@ module ForoCochesAPI
       @thread_parsed.search('table.tborder td.thead').each_with_index do |time_information, index|
         time = time_information.text
         @list_of_time.push(time)
-      end 
+      end
 
       @list_of_time
     end
